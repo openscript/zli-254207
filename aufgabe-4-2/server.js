@@ -1,7 +1,7 @@
 import express from 'express';
 
 const app = express();
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }))
 const port = 3000;
 
 app.get('/now', (request, response) => {
@@ -14,7 +14,7 @@ const names = [];
 
 app.post('/names', (request, response) => {
     names.push(request.body.name);
-    response.send(201);
+    response.sendStatus(201);
 });
 
 app.get('/names', (request, response) => {
