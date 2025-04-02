@@ -32,6 +32,9 @@ app.post('/books', (request, response) => {
 });
 
 app.put(`/books/:isbn`, (request, response) => {
+  if (!books.find((b) => b.isbn === request.params.isbn)) {
+    return response.sendStatus(409);
+  }
   books = books.map((b) => {
     if(b.isbn === request.params.isbn) {
       return request.body;
