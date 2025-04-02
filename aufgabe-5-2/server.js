@@ -63,6 +63,10 @@ app.get('/lends/:id', (request, response) => {
 });
 
 app.post('/lends', (request, response) => {
+    const isLent = lends.some((l) => l.isbn === request.body.isbn && !l.returnedAt);
+    if (isLent) {
+        return response.send(400);
+    }
     lends = [...lends, { ...request.body, id: randomUUID(), borrowedAt: Date.now() }]
     response.status(201).send(lends);
 });
