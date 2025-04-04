@@ -5,7 +5,8 @@
     "dev": "nodemon ./aufgabe-6-2/server.js"
   },
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "express-session": "^1.18.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.9",
