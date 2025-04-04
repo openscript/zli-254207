@@ -1,9 +1,13 @@
 {
   "type": "module",
+  "scripts": {
+    "swagger": "node ./aufgabe-6-2/swagger.js"
+  },
   "dependencies": {
     "express": "^4.21.2"
   },
   "devDependencies": {
-    "swagger-autogen": "^2.23.7"
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
   }
 }
