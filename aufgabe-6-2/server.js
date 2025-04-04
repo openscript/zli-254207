@@ -12,7 +12,7 @@ const swaggerDocument = JSON.parse(file);
 app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 let books = [
-    { isbn: "9780747532743", title: "Harry Potter and the Philosopher's Stone", year: 1997, author: "J.K. Rowling" },
+    { isbn: "9780747532742", title: "Harry Potter and the Philosopher's Stone", year: 1997, author: "J.K. Rowling" },
     { isbn: "9780439064873", title: "Harry Potter and the Chamber of Secrets", year: 1998, author: "J.K. Rowling" },
     { isbn: "9780261103573", title: "The Lord of the Rings", year: 1954, author: "J.R.R. Tolkien" },
     { isbn: "9780316769488", title: "The Catcher in the Rye", year: 1951, author: "J.D. Salinger" },
