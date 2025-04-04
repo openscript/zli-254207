@@ -36,7 +36,7 @@ app.post('/books', (request, response) => {
 
 app.put(`/books/:isbn`, (request, response) => {
     if (!books.find((b) => b.isbn === request.params.isbn)) {
-        return response.sendStatus(409);
+        return response.send(409);
     }
     books = books.map((b) => {
         if (b.isbn === request.params.isbn) {
@@ -50,7 +50,7 @@ app.put(`/books/:isbn`, (request, response) => {
 
 app.delete(`/books/:isbn`, (request, response) => {
     books = books.filter((b) => b.isbn !== request.params.isbn);
-    response.sendStatus(204);
+    response.send(204);
 });
 
 app.get('/lends', (_request, response) => {
@@ -63,8 +63,17 @@ app.get('/lends/:id', (request, response) => {
 });
 
 app.post('/lends', (request, response) => {
-    const isLent = lends.some((l) => l.isbn === request.body.isbn && !l.returnedAt);
-    if (isLent) {
+    const isValid = request.body.customerId && request.body.isbn;
+    if (!isValid) {
+        return response.send(422);
+    }
+    const isLent = lends.some(
+        (l) => l.isbn === request.body.isbn && !l.returnedAt
+    );
+    const tooManyLends = lends.filter(
+        (l) => l.customerId === request.body.customerId && !l.returnedAt
+    ).length >= 3;
+    if (isLent || tooManyLends) {
         return response.send(400);
     }
     lends = [...lends, { ...request.body, id: randomUUID(), borrowedAt: Date.now() }]

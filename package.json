@@ -2,5 +2,8 @@
   "type": "module",
   "dependencies": {
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "swagger-autogen": "^2.23.7"
   }
 }
