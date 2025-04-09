@@ -1,0 +1,24 @@
+import express from 'express';
+const router = express.Router();
+
+router.post('/login', (request, response) => {
+    if (request.body.email === "zli@example.com" && request.body.password === "m295") {
+        request.session.email = request.body.email;
+        return response.sendStatus(201);
+    }
+    return response.sendStatus(401);
+});
+
+router.get('/verify', (request, response) => {
+    if (request.session.email) {
+        return response.send(`Authentifiziert als ${request.session.email}.`);
+    }
+    return response.send("Nicht authentifiziert.")
+});
+
+router.delete('/logout', (request, response) => {
+    request.session.destroy();
+    response.sendStatus(204);
+});
+
+export default router;
