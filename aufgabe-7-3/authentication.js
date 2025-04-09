@@ -1,6 +1,7 @@
 import express from 'express';
 const router = express.Router();
 
+// http://localhost:3000/login
 router.post('/login', (request, response) => {
     if (request.body.email === "zli@example.com" && request.body.password === "m295") {
         request.session.email = request.body.email;
@@ -9,6 +10,7 @@ router.post('/login', (request, response) => {
     return response.sendStatus(401);
 });
 
+// http://localhost:3000/verify
 router.get('/verify', (request, response) => {
     if (request.session.email) {
         return response.send(`Authentifiziert als ${request.session.email}.`);
